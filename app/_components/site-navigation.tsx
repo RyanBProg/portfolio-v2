@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { sitePages } from "../_site";
-import { darkLinkColors, linkClasses } from "./link-classes";
 
 export function SiteNavigation() {
   const pathname = usePathname();
@@ -16,10 +15,10 @@ export function SiteNavigation() {
             <Link
               href={href}
               aria-current={pathname === href ? "page" : undefined}
-              className={`${linkClasses} ${
+              className={`site-link ${
                 pathname === href
                   ? "font-semibold text-canvas active:text-accent"
-                  : darkLinkColors
+                  : "site-link--dark"
               }`}
             >
               {label}

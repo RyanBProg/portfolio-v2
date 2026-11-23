@@ -1,4 +1,3 @@
-import { lightLinkColors, linkClasses } from "./_components/link-classes";
 import { linkedinUrl, pageMetadata, siteRole } from "./_site";
 
 export const metadata = pageMetadata(
@@ -84,7 +83,7 @@ export default function Home() {
             </p>
             <a
               href="#current-focus"
-              className={`${linkClasses} text-xl -ml-3 mt-7 text-accent hover:text-canvas active:text-on-ink-muted sm:mt-9`}>
+              className="site-link text-xl -ml-3 mt-7 text-accent hover:text-canvas active:text-on-ink-muted sm:mt-9">
               Explore my work
             </a>
           </div>
@@ -179,7 +178,7 @@ export default function Home() {
             <div className="-ml-3 mt-3 flex flex-wrap items-center">
               <a
                 href={linkedinUrl}
-                className={`${linkClasses} ${lightLinkColors}`}>
+                className="site-link site-link--light">
                 LinkedIn
               </a>
               <span aria-hidden="true" className="text-muted">
@@ -187,7 +186,7 @@ export default function Home() {
               </span>
               <a
                 href="https://github.com/RyanBProg"
-                className={`${linkClasses} ${lightLinkColors}`}>
+                className="site-link site-link--light">
                 GitHub
               </a>
             </div>
