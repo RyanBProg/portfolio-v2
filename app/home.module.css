@@ -1,0 +1,348 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(6rem, 33cqi, 12rem);
+  gap: 1.125rem 0.75rem;
+  padding-block-start: clamp(5.5rem, 13cqi, 7.5rem);
+  padding-inline-start: var(--portfolio-gutter);
+  overflow: clip;
+}
+
+.heroHeading {
+  grid-column: 1 / -1;
+  position: relative;
+  padding-inline: 0.875rem var(--portfolio-gutter);
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.heroDetails {
+  padding-block-end: 1.75rem;
+  font-size: clamp(1rem, 1.65cqi, 1.5rem);
+  line-height: 1.43;
+}
+
+.heroDetails p {
+  max-width: 47ch;
+}
+
+.heroLink,
+.contactLinks a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625em;
+  min-height: 2.75rem;
+  font-weight: 600;
+}
+
+.heroLink {
+  margin-block-start: clamp(1rem, 2.9cqi, 2.625rem);
+  padding: 0.5rem clamp(0.625rem, 1.65cqi, 1.5rem);
+  background-color: var(--color-link);
+  color: white;
+  font-size: clamp(0.875rem, 1.42cqi, 1.25rem);
+}
+
+.heroLink:hover {
+  background-color: #174b9b;
+}
+
+.heroLink:focus-visible {
+  outline-color: var(--color-ink);
+}
+
+.portrait {
+  position: relative;
+  z-index: -1;
+  align-self: end;
+  height: min(51cqi, 14rem);
+}
+
+.portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-panel-light);
+  clip-path: polygon(19% 0, 61% 0, 61% 26%, 89% 26%, 89% 100%, 19% 100%);
+}
+
+.portrait img {
+  --portrait-scale: 84%;
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: var(--portrait-scale);
+  height: var(--portrait-scale);
+  object-fit: cover;
+  object-position: center 18%;
+  filter: grayscale(1);
+}
+
+.engineering,
+.contact {
+  display: grid;
+  gap: 1.25rem;
+  padding: var(--portfolio-row-space) var(--portfolio-gutter);
+  border-block-start: 1px solid var(--color-line);
+}
+
+.engineeringLabel,
+.focusLabel {
+  font-size: clamp(0.75rem, 1.29cqi, 1.125rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.engineeringLabel::before,
+.focusLabel::before {
+  content: "";
+  width: clamp(1.5rem, 3cqi, 2.75rem);
+  height: 3px;
+  background-color: var(--color-link);
+}
+
+.engineeringLabel::before {
+  display: block;
+  margin-block-end: 0.875rem;
+}
+
+.engineering h2 {
+  max-width: 17ch;
+}
+
+.engineeringIntro p,
+.focusContent > p:last-child {
+  max-width: 46ch;
+  margin-block-start: clamp(0.875rem, 2.8cqi, 2.5rem);
+  font-size: clamp(1rem, 1.48cqi, 1.3125rem);
+  line-height: 1.5;
+}
+
+.disciplines {
+  display: grid;
+  gap: clamp(0.875rem, 1.4cqi, 1.25rem);
+  list-style: none;
+}
+
+.disciplines li {
+  display: grid;
+  grid-template-columns: 2.2ch minmax(0, 1fr);
+  gap: clamp(0.75rem, 2.6cqi, 2.375rem);
+  font-size: clamp(1rem, 1.32cqi, 1.1875rem);
+}
+
+.disciplineNumber {
+  color: #40536a;
+  font-variant-numeric: tabular-nums;
+}
+
+.disciplines h3 {
+  font-weight: 600;
+}
+
+.disciplines p {
+  color: #414c59;
+  font-size: clamp(0.9375rem, 1.19cqi, 1.0625rem);
+  line-height: 1.35;
+}
+
+.focus {
+  display: grid;
+  background-color: var(--color-navy);
+  color: #faf9f7;
+  scroll-margin-block-start: 0;
+}
+
+.focusContent {
+  position: relative;
+  padding: var(--portfolio-row-space) var(--portfolio-gutter);
+}
+
+.focusLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-block-end: clamp(0.75rem, 1.5cqi, 1.375rem);
+  color: #b6c6d7;
+  font-weight: 400;
+  letter-spacing: 0.11em;
+}
+
+.focusLabel::before {
+  background-color: #548fe9;
+}
+
+.focus h2 {
+  max-width: 14ch;
+}
+
+.focusContent > p:last-child {
+  margin-block-start: clamp(0.875rem, 2cqi, 1.75rem);
+}
+
+.workImage {
+  min-height: 0.75rem;
+  background-color: var(--color-panel);
+}
+
+.contact {
+  scroll-margin-block-start: 0;
+}
+
+.focus:target,
+.contact:target {
+  box-shadow: inset 3px 0 var(--color-link);
+}
+
+.contact h2 {
+  max-width: 19ch;
+  font-size: clamp(1.75rem, 2.86cqi, 2.625rem);
+}
+
+.contactDetails {
+  max-width: 57ch;
+  font-size: clamp(1rem, 1.34cqi, 1.1875rem);
+  line-height: 1.5;
+}
+
+.contactDetails p + p {
+  margin-block-start: 0.65em;
+}
+
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.625rem;
+  margin-block-start: 0.35rem;
+  color: var(--color-link);
+}
+
+.contactLinks a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: clamp(1.125rem, 2.6cqi, 2.375rem);
+    min-height: 60.6cqi;
+    padding: 20.1cqi 0 clamp(2.75rem, 5.5cqi, 5rem) 8.2cqi;
+  }
+
+  .heroHeading {
+    padding: 0;
+  }
+
+  .role {
+    position: absolute;
+    inset-block-end: calc(100% + 0.75rem);
+    margin: 0;
+  }
+
+  .heroDetails {
+    width: 52cqi;
+    padding-block-end: 0;
+  }
+
+  .portrait {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 50.2%;
+    height: 100%;
+  }
+
+  .portrait::before {
+    clip-path: polygon(19.5% 0, 56% 0, 56% 26.3%, 78% 26.3%, 78% 100%, 19.5% 100%);
+  }
+
+  .portrait img {
+    height: calc(var(--portrait-scale) * 0.9);
+  }
+
+  .engineering,
+  .contact {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .engineeringLabel {
+    grid-column: 1 / -1;
+    margin-block-end: 1.5rem;
+  }
+
+  .engineeringIntro,
+  .contact h2 {
+    padding-inline-end: 3.25cqi;
+  }
+
+  .disciplines,
+  .contactDetails {
+    padding-inline-start: 3.4cqi;
+    border-inline-start: 1px solid var(--color-line);
+  }
+
+  .focus {
+    grid-template-columns: 59.6% minmax(0, 1fr);
+  }
+
+  .focusContent {
+    min-height: 28.2cqi;
+    padding-inline-end: 14cqi;
+  }
+
+  .focusContent::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 19.4%;
+    border-inline-start: 1px solid var(--color-line-dark);
+    background-image: linear-gradient(var(--color-line-dark), var(--color-line-dark));
+    background-repeat: no-repeat;
+    background-position: 0 33%;
+    background-size: 100% 1px;
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 62rem) {
+  .engineering {
+    grid-template-columns: 18.7% minmax(0, 50.3%) minmax(0, 1fr);
+  }
+
+  .engineeringLabel {
+    grid-column: auto;
+    max-width: 20ch;
+    margin-block-end: 0;
+    padding-inline-end: 1rem;
+  }
+
+  .engineeringIntro,
+  .contact h2 {
+    padding-inline-start: 3.25cqi;
+    border-inline-start: 1px solid var(--color-line);
+  }
+
+  .contact {
+    grid-template-columns: 18.7% minmax(0, 41.85%) minmax(0, 1fr);
+  }
+
+  .contact::before {
+    content: "";
+    width: clamp(2.75rem, 10cqi, 9rem);
+    height: 1px;
+    margin-block-start: 1.8rem;
+    background-color: var(--color-line);
+  }
+
+  .contactDetails {
+    max-width: none;
+  }
+}

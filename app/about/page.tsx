@@ -1,4 +1,5 @@
 import { pageMetadata } from "../_site";
+import styles from "./about.module.css";
 
 export const metadata = pageMetadata(
   "About",
@@ -20,6 +21,7 @@ const sections = [
   {
     id: "how-i-work",
     title: "How I work",
+    tone: "dark",
     paragraphs: [
       "I value clear thinking, practical solutions and sound engineering decisions.",
       "I enjoy working through complex problems, understanding the constraints and finding an approach that makes sense beyond the immediate implementation. I'm equally interested in the details of how something works and how the individual pieces fit into a larger system.",
@@ -40,47 +42,39 @@ const sections = [
 
 export default function AboutPage() {
   return (
-    <>
-      <section aria-labelledby="about-title" className="bg-ink text-canvas">
-        <div className="site-container window-row window-row--hero">
-          <p className="window-rail section-label text-on-ink-muted">About</p>
-          <div className="window-pane">
-            <h1 id="about-title" className="max-w-[21ch] text-[clamp(2rem,5.25vw,4.25rem)] leading-[1.08] font-normal tracking-[-0.045em]">
-              An engineering mindset, applied to software.
-            </h1>
-            <div className="copy-block mt-6 space-y-4 text-on-ink-muted">
-              <p>
-                I&apos;m a software engineer with a background in mechanical design
-                engineering and a long-standing interest in understanding how
-                things work, solving problems and finding better ways to do things.
-              </p>
-              <p>
-                My path into software developed through practical problem-solving.
-                While working in mechanical engineering, I began using programming
-                to automate repetitive processes and build tools that made
-                engineering work more efficient. What started as a way to solve
-                problems in my day-to-day work gradually became a much bigger
-                interest.
-              </p>
-            </div>
-          </div>
+    <div className="portfolio-page">
+      <section aria-labelledby="about-title" className={styles.hero}>
+        <div className={styles.heroHeading}>
+          <p className="portfolio-eyebrow">About</p>
+          <h1 id="about-title" className="portfolio-title">
+            An engineering mindset, applied to software.
+          </h1>
+        </div>
+        <div className={styles.introCopy}>
+          <p>
+            I&apos;m a software engineer with a background in mechanical design
+            engineering and a long-standing interest in understanding how
+            things work, solving problems and finding better ways to do things.
+          </p>
+          <p>
+            My path into software developed through practical problem-solving.
+            While working in mechanical engineering, I began using programming
+            to automate repetitive processes and build tools that made
+            engineering work more efficient. What started as a way to solve
+            problems in my day-to-day work gradually became a much bigger
+            interest.
+          </p>
         </div>
       </section>
 
-      {sections.map(({ id, title, paragraphs }) => (
-        <section key={id} aria-labelledby={id} className="border-t border-line">
-          <div className="site-container window-row">
-            <h2 id={id} className="window-rail text-xl leading-snug font-semibold tracking-tight">
-              {title}
-            </h2>
-            <div className="window-pane">
-              <div className="copy-block space-y-4 text-muted">
-                {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              </div>
-            </div>
+      {sections.map(({ id, title, paragraphs, tone }) => (
+        <section key={id} aria-labelledby={id} className={styles.section} data-tone={tone}>
+          <h2 id={id}>{title}</h2>
+          <div className={styles.sectionCopy}>
+            {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
         </section>
       ))}
-    </>
+    </div>
   );
 }

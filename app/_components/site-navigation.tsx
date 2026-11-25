@@ -15,11 +15,7 @@ export function SiteNavigation() {
             <Link
               href={href}
               aria-current={pathname === href ? "page" : undefined}
-              className={`site-link ${
-                pathname === href
-                  ? "font-semibold text-canvas active:text-accent"
-                  : "site-link--dark"
-              }`}
+              className="site-navigation-link site-link"
             >
               {label}
             </Link>

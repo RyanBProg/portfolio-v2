@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className="flex min-h-svh flex-col bg-canvas font-sans text-ink">
+      <body className="flex min-h-svh flex-col">
         <SiteHeader />
         <main id="main-content" tabIndex={-1} className="anchor-target grow">
           {children}

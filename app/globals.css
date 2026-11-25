@@ -1,30 +1,65 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #111c2c;
-  --color-canvas: #f1f3f5;
-  --color-inset: #e6ebf1;
+  --color-ink: #101a28;
+  --color-canvas: #eeede9;
+  --color-navy: #111f2d;
   --color-accent: #5b9bff;
-  --color-link: #235db3;
-  --color-muted: #47566a;
-  --color-on-ink-muted: #a9b7ca;
-  --color-line: #cbd4df;
-  --color-line-dark: #35475e;
+  --color-link: #1d5fc7;
+  --color-line: #c8cdd1;
+  --color-line-dark: #394857;
+  --color-panel: #466480;
+  --color-panel-light: #88a6c5;
 
-  --container-site: 80rem;
   --font-sans: system-ui, "Segoe UI", sans-serif;
 }
 
+@layer base {
+  :root {
+    --portfolio-width: 90rem;
+    --header-height: clamp(3.75rem, 9.7vw, 8.75rem);
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  :where(a, button):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  ::selection {
+    color: var(--color-ink);
+    background-color: var(--color-accent);
+  }
+}
+
 @layer components {
-  .site-container {
-    width: calc(100% - clamp(2rem, 8vw, 7rem));
-    max-width: var(--container-site);
+  .site-header {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    max-width: var(--portfolio-width);
     margin-inline: auto;
   }
 
-  .frame-bar {
-    background-color: var(--color-ink);
-    color: var(--color-canvas);
+  .site-header:has(.site-navigation-link[aria-current="page"]) {
+    position: absolute;
+    inset: 0 0 auto;
+  }
+
+  .site-header-content {
+    height: var(--header-height);
+    margin-inline: clamp(1.25rem, 5.9vw, 5.375rem);
   }
 
   .site-link {
@@ -42,113 +77,118 @@
     outline-offset: -4px;
   }
 
-  .site-link--dark {
-    color: var(--color-on-ink-muted);
+  .site-brand {
+    padding-inline: 0;
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2.04vw, 1.8rem);
+    font-weight: 550;
+    letter-spacing: -0.04em;
   }
 
-  .site-link--light {
+  .site-navigation-link {
+    position: relative;
+    align-self: center;
+    min-width: 2.75rem;
+    padding-inline: clamp(0.375rem, 1vw, 0.875rem);
+    font-size: clamp(0.875rem, 1.39vw, 1.25rem);
+  }
+
+  .site-brand:hover,
+  .site-navigation-link:hover {
     color: var(--color-link);
   }
 
-  @media (hover: hover) {
-    .site-link--dark:hover {
-      color: var(--color-canvas);
-    }
-
-    .site-link--light:hover {
-      color: var(--color-ink);
-    }
+  .site-navigation-link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    inset-inline: clamp(0.375rem, 1vw, 0.875rem);
+    inset-block-start: calc(50% + 0.85em);
+    height: 2px;
+    background-color: var(--color-link);
   }
 
-  .site-link--dark:active {
-    color: var(--color-accent);
-  }
-
-  .site-link--light:active {
-    color: var(--color-muted);
-  }
-
-  .window-row {
-    --row-space: clamp(2rem, 5vw, 4rem);
-    display: grid;
-    padding-block: var(--row-space);
-  }
-
-  .window-row--hero {
-    --row-space: clamp(3rem, 7.5vw, 6.5rem);
-    --row-rule: var(--color-line-dark);
-  }
-
-  .window-rail {
-    margin-bottom: 0.75rem;
-  }
-
-  .window-pane {
-    min-width: 0;
-  }
-
-  @media (min-width: 48rem) {
-    .window-row {
-      grid-template-columns: clamp(9.5rem, 17vw, 15rem) minmax(0, 1fr);
-      padding-block: 0;
-    }
-
-    .window-rail,
-    .window-pane {
-      margin-bottom: 0;
-      padding-block: var(--row-space);
-    }
-
-    .window-rail {
-      padding-inline-end: 1.5rem;
-    }
-
-    .window-pane {
-      padding-inline-start: clamp(1.75rem, 4vw, 4rem);
-      border-inline-start: 1px solid var(--row-rule, var(--color-line));
-    }
-  }
-
-  .section-label {
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    width: 100%;
+    max-width: var(--portfolio-width);
+    margin-inline: auto;
+    padding: 0.625rem clamp(1.25rem, 4.55vw, 4.125rem);
+    border-block-start: 1px solid var(--color-line);
     font-size: 0.875rem;
-    line-height: 1.4;
+  }
+
+  body:has(.site-navigation-link[href="/"][aria-current="page"]) .site-footer {
+    display: none;
+  }
+
+  .site-footer a {
+    color: var(--color-link);
     font-weight: 600;
-    letter-spacing: 0.075em;
+  }
+
+  .site-footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .portfolio-page {
+    --portfolio-gutter: clamp(1.25rem, 4.55cqi, 4.125rem);
+    --portfolio-row-space: clamp(1.75rem, 4.25cqi, 3.875rem);
+    container-type: inline-size;
+    max-width: var(--portfolio-width);
+    margin-inline: auto;
+  }
+
+  .portfolio-eyebrow {
+    margin-block-end: 0.625rem;
+    font-size: clamp(0.75rem, 1.2cqi, 1rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
-  .copy-block {
-    max-width: 62ch;
-    line-height: 1.7;
+  .portfolio-title {
+    position: relative;
+    font-family: var(--font-sans);
+    font-size: clamp(1.875rem, 8.35cqi, 3.5rem);
+    font-weight: 550;
+    line-height: 1.055;
+    letter-spacing: -0.06em;
+  }
+
+  .portfolio-title::before {
+    content: "";
+    position: absolute;
+    inset-block: -0.125rem 0;
+    inset-inline-start: -0.875rem;
+    width: 3px;
+    background-color: var(--color-link);
+  }
+
+  .portfolio-page h2 {
+    font-size: clamp(1.875rem, 3.6cqi, 3.25rem);
+    font-weight: 500;
+    line-height: 1.07;
+    letter-spacing: -0.055em;
+    text-wrap: balance;
   }
 
   .anchor-target {
     scroll-margin-block-start: var(--header-height);
   }
-}
 
-@layer base {
-  :root {
-    --header-height: 3.5rem;
-  }
-
-  :where(a, button):focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 3px;
-  }
-
-  main a {
-    scroll-margin-block-start: calc(var(--header-height) + 0.5rem);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
+  @media (min-width: 48rem) {
+    .portfolio-title {
+      font-size: clamp(2.5rem, 5.73cqi, 5.1875rem);
     }
-  }
 
-  ::selection {
-    color: var(--color-ink);
-    background-color: var(--color-accent);
+    .portfolio-title::before {
+      inset-inline-start: -4.3cqi;
+      width: clamp(3px, 0.55cqi, 8px);
+    }
   }
 }
